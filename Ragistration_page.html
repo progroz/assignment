@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .hobbies {
+            margin-bottom: 20px;
+        }
+
+        .hobbies label {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        .address-group {
+            margin-bottom: 20px;
+        }
+
+        .address-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .billing-checkbox {
+            margin-top: 10px;
+        }
+
+        label.gender {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        label.gender input {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <form action="XYZ.html" id="myForm">
+        <h1>Welcome to my Page</h1>
+
+        <label for="t1">Name</label>
+        <input type="text" value="ABC" placeholder="Eg-A,B" name="t1">
+
+        <label for="t2">DOB</label>
+        <input type="date" value="ABC" placeholder="Eg-A,B" name="t2">
+
+        <label for="t3">Password</label>
+        <input type="password" value="ABC" placeholder="Password***" name="t3">
+
+        <label for="t4">City</label>
+        <input type="text" value="ABC" placeholder="Eg-A,B" name="t4">
+
+        <div class="address-group">
+            <label>Permanent Address</label>
+            <input type="text" value="ABC" placeholder="Permanent Address" id="permanentAddress" name="permanentAddress">
+        </div>
+
+        <div class="address-group">
+            <label>Billing Address</label>
+            <input type="text" value="ABC" placeholder="Billing Address" id="billingAddress" name="billingAddress">
+        </div>
+
+        <div class="billing-checkbox">
+            <label><input type="checkbox" id="copyAddress"> Copy Permanent Address to Billing Address</label>
+        </div>
+
+        <div class="hobbies">
+            <label>Hobbies</label>
+            <label><input type="checkbox" value="Reading" name="t5"> Reading</label>
+            <label><input type="checkbox" value="Sports" name="t5"> Sports</label>
+            <label><input type="checkbox" value="Music" name="t5"> Music</label>
+            <!-- Add more hobbies as needed -->
+        </div>
+
+        <label class="gender">Gender
+            <input type="radio" name="t6" id="male"><label for="male">Male</label>
+            <input type="radio" name="t6" id="female"><label for="female">Female</label>
+        </label>
+
+        <input type="submit">
+    </form>
+
+    <script>
+        document.getElementById('copyAddress').addEventListener('change', function() {
+            if (this.checked) {
+                document.getElementById('billingAddress').value = document.getElementById('permanentAddress').value;
+            } else {
+                document.getElementById('billingAddress').value = "";
+            }
+        });
+    </script>
+</body>
+</html>

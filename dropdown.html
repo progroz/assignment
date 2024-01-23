@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Dropdowns</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select {
+            width: 200px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <label for="country">Country:</label>
+    <select id="country" onchange="updateStates()">
+        <option value="usa">USA</option>
+        <option value="canada">Canada</option>
+        <option value="india">India</option>
+        <!-- Add more countries as needed -->
+    </select>
+
+    <label for="state">State:</label>
+    <select id="state" onchange="updateCities()">
+        <!-- States will be dynamically populated based on the selected country -->
+    </select>
+
+    <label for="city">City:</label>
+    <select id="city">
+        <!-- Cities will be dynamically populated based on the selected state -->
+    </select>
+
+    <script>
+        var stateData = {
+            usa: ["New York", "California", "Texas"],
+            canada: ["Ontario", "Quebec", "British Columbia"],
+            india: ["Delhi", "Maharashtra", "Karnataka"]
+            // Add more states as needed
+        };
+
+        var cityData = {
+            "New York": ["New York City", "Buffalo", "Rochester"],
+            "California": ["Los Angeles", "San Francisco", "San Diego"],
+            "Texas": ["Houston", "Dallas", "Austin"],
+            "Ontario": ["Toronto", "Ottawa", "Hamilton"],
+            "Quebec": ["Montreal", "Quebec City", "Sherbrooke"],
+            "British Columbia": ["Vancouver", "Victoria", "Kelowna"],
+            "Delhi": ["New Delhi", "Noida", "Gurgaon"],
+            "Maharashtra": ["Mumbai", "Pune", "Nagpur"],
+            "Karnataka": ["Bangalore", "Mysore", "Hubli"]
+            // Add more cities as needed
+        };
+
+        function updateStates() {
+            var countrySelect = document.getElementById("country");
+            var stateSelect = document.getElementById("state");
+            var selectedCountry = countrySelect.value;
+
+            stateSelect.innerHTML = "<option value='' disabled selected>Select State</option>";
+
+            stateData[selectedCountry].forEach(function (state) {
+                var option = document.createElement("option");
+                option.value = state;
+                option.text = state;
+                stateSelect.add(option);
+            });
+
+            updateCities();
+        }
+
+        function updateCities() {
+            var stateSelect = document.getElementById("state");
+            var citySelect = document.getElementById("city");
+            var selectedState = stateSelect.value;
+
+            citySelect.innerHTML = "<option value='' disabled selected>Select City</option>";
+
+            cityData[selectedState].forEach(function (city) {
+                var option = document.createElement("option");
+                option.value = city;
+                option.text = city;
+                citySelect.add(option);
+            });
+        }
+
+        updateStates();
+    </script>
+</body>
+</html>
